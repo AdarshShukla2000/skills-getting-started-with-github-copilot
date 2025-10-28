@@ -20,6 +20,77 @@ app.mount("/static", StaticFiles(directory=os.path.join(Path(__file__).parent,
           "static")), name="static")
 
 
+# In-memory activities store (module-level so all routes can access and modify it)
+activities = {
+    # Sports-related activities
+    "soccer": {
+        "name": "Soccer",
+        "category": "sports",
+        "description": "Outdoor team sport. Practice on Tuesdays and Thursdays.",
+        "participants": [],
+        "max_participants": 22
+    },
+    "basketball": {
+        "name": "Basketball",
+        "category": "sports",
+        "description": "Indoor court, competitive team practices and games.",
+        "participants": [],
+        "max_participants": 12
+    },
+    "swimming": {
+        "name": "Swimming",
+        "category": "sports",
+        "description": "Swim team with lap training and meets.",
+        "participants": [],
+        "max_participants": 20
+    },
+    # Artistic activities
+    "drama": {
+        "name": "Drama Club",
+        "category": "artistic",
+        "description": "Acting, stagecraft, and seasonal productions.",
+        "participants": [],
+        "max_participants": 30
+    },
+    "choir": {
+        "name": "Choir",
+        "category": "artistic",
+        "description": "Vocal ensemble rehearsals and performances.",
+        "participants": [],
+        "max_participants": 50
+    },
+    "painting": {
+        "name": "Painting",
+        "category": "artistic",
+        "description": "Open-studio painting sessions and exhibitions.",
+        "participants": [],
+        "max_participants": 25
+    },
+    # Intellectual activities
+    "chess": {
+        "name": "Chess Club",
+        "category": "intellectual",
+        "description": "Weekly meetings, puzzles, and interschool matches.",
+        "participants": [],
+        "max_participants": 30
+    },
+    "debate": {
+        "name": "Debate Team",
+        "category": "intellectual",
+        "description": "Competitive debate practice and tournaments.",
+        "participants": [],
+        "max_participants": 24
+    },
+    "robotics": {
+        "name": "Robotics Club",
+        "category": "intellectual",
+        "description": "Design and build robots for regional competitions.",
+        "participants": [],
+        "max_participants": 18
+    }
+}
+
+
 @app.get("/")
 def root():
     return RedirectResponse(url="/static/index.html")
@@ -27,75 +98,6 @@ def root():
 
 @app.get("/activities")
 def get_activities():
-    activities = {
-        # Sports-related activities
-        "soccer": {
-            "name": "Soccer",
-            "category": "sports",
-            "description": "Outdoor team sport. Practice on Tuesdays and Thursdays.",
-            "participants": [],
-            "max_participants": 22
-        },
-        "basketball": {
-            "name": "Basketball",
-            "category": "sports",
-            "description": "Indoor court, competitive team practices and games.",
-            "participants": [],
-            "max_participants": 12
-        },
-        "swimming": {
-            "name": "Swimming",
-            "category": "sports",
-            "description": "Swim team with lap training and meets.",
-            "participants": [],
-            "max_participants": 20
-        },
-        # Artistic activities
-        "drama": {
-            "name": "Drama Club",
-            "category": "artistic",
-            "description": "Acting, stagecraft, and seasonal productions.",
-            "participants": [],
-            "max_participants": 30
-        },
-        "choir": {
-            "name": "Choir",
-            "category": "artistic",
-            "description": "Vocal ensemble rehearsals and performances.",
-            "participants": [],
-            "max_participants": 50
-        },
-        "painting": {
-            "name": "Painting",
-            "category": "artistic",
-            "description": "Open-studio painting sessions and exhibitions.",
-            "participants": [],
-            "max_participants": 25
-        },
-        # Intellectual activities
-        "chess": {
-            "name": "Chess Club",
-            "category": "intellectual",
-            "description": "Weekly meetings, puzzles, and interschool matches.",
-            "participants": [],
-            "max_participants": 30
-        },
-        "debate": {
-            "name": "Debate Team",
-            "category": "intellectual",
-            "description": "Competitive debate practice and tournaments.",
-            "participants": [],
-            "max_participants": 24
-        },
-        "robotics": {
-            "name": "Robotics Club",
-            "category": "intellectual",
-            "description": "Design and build robots for regional competitions.",
-            "participants": [],
-            "max_participants": 18
-        }
-    }
-
     return activities
 
 
